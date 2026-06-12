@@ -2,6 +2,19 @@
 
 A full-stack application for managing products, customers, orders, and inventory tracking with automated stock management.
 
+## 🔗 Live Demo & Links
+
+| Resource | URL |
+|:---|:---|
+| **Live Frontend** | https://inventory-frontend-5o3b.onrender.com |
+| **Live Backend API** | https://inventory-backend-jrdk.onrender.com |
+| **API Documentation** | https://inventory-backend-jrdk.onrender.com/docs |
+| **GitHub Repository** | https://github.com/sourabhvishwakarma1/Inventory-and-Order-Management-System |
+| **Docker Hub (Backend)** | https://hub.docker.com/r/sourabhvishwakarma/inventory-backend |
+| **Docker Hub (Frontend)** | https://hub.docker.com/r/sourabhvishwakarma/inventory-frontend |
+
+> **Note:** Free-tier backend may take ~30 seconds to wake up on first request after inactivity.
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -39,8 +52,8 @@ A full-stack application for managing products, customers, orders, and inventory
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd Project
+   git clone https://github.com/sourabhvishwakarma1/Inventory-and-Order-Management-System.git
+   cd Inventory-and-Order-Management-System
    ```
 
 2. **Copy environment variables**
@@ -199,14 +212,23 @@ Project/
    - Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 3. Add environment variables:
    - `DATABASE_URL` → Internal Database URL from step 1
-   - `CORS_ORIGINS` → Your Vercel frontend URL
+   - `CORS_ORIGINS` → Your frontend URL (e.g. `https://inventory-frontend-5o3b.onrender.com`)
    - `DEBUG` → `false`
-4. Seed data via the Shell tab: `python -m app.seed`
+4. Database is **auto-seeded** on first startup (no Shell access needed)
 
-### Frontend (Vercel)
-1. Import your GitHub repository on Vercel
+### Frontend (Render Static Site)
+1. Create a **Static Site** on Render
 2. Set root directory to `frontend`
-3. Add environment variable: `VITE_API_URL` → Your Render backend URL
-4. Deploy
+3. Build command: `npm install && npm run build`
+4. Publish directory: `dist`
+5. Add environment variable: `VITE_API_URL` → Your Render backend URL
+6. Add rewrite rule: `/*` → `/index.html` (Rewrite)
 
-> **Note:** Render free tier services sleep after 15 minutes of inactivity. First request after idle takes ~30 seconds.
+### Docker Hub Images
+```bash
+# Pull and run locally
+docker pull sourabhvishwakarma/inventory-backend:latest
+docker pull sourabhvishwakarma/inventory-frontend:latest
+```
+
+> **Note:** Render free tier web services sleep after 15 minutes of inactivity. First request after idle takes ~30 seconds. Static Sites are always on.
