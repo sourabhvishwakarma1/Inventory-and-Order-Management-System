@@ -11,6 +11,13 @@ from app.models import product, customer, order  # noqa: F401
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
+# Auto-seed database with sample data if empty
+try:
+    from app.seed import seed
+    seed()
+except Exception as e:
+    print(f"Auto-seed skipped: {e}")
+
 app = FastAPI(
     title=settings.APP_NAME,
     description="API for managing products, customers, orders, and inventory tracking",
