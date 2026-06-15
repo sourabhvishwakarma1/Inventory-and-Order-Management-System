@@ -35,7 +35,7 @@
 | Rule | Implementation |
 |:---|:---|
 | Unique product SKUs | Database `UNIQUE` constraint + backend validation |
-| Custom or Auto-generated SKU | User can enter a unique SKU, or leave blank → backend generates `PRD-001`, `PRD-002`, etc. |
+| Auto-generated SKUs | Backend generates `PRD-001`, `PRD-002`, etc. if SKU not provided |
 | Unique customer emails | Database `UNIQUE` constraint + backend validation |
 | Stock validation before order | All items checked atomically before any stock is reduced |
 | Auto stock reduction | Stock decreases when order is placed |

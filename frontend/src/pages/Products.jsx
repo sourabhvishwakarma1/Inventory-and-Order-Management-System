@@ -255,28 +255,20 @@ export default function Products() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">{editingProduct ? 'SKU' : 'SKU (Optional)'}</label>
-              {editingProduct ? (
-                <input
-                  className="form-input"
-                  value={editingProduct.sku}
-                  disabled
-                  style={{ opacity: 0.6 }}
-                  id="product-sku-input"
-                />
-              ) : (
-                <input
-                  className="form-input"
-                  value={form.sku}
-                  onChange={(e) => setForm({ ...form, sku: e.target.value })}
-                  placeholder="e.g. WBH-001 (leave blank to auto-generate)"
-                  id="product-sku-input"
-                />
-              )}
+              <label className="form-label">SKU {editingProduct ? '' : '(Optional)'}</label>
+              <input
+                className="form-input"
+                value={editingProduct ? editingProduct.sku : form.sku}
+                onChange={(e) => setForm({ ...form, sku: e.target.value })}
+                disabled={!!editingProduct}
+                style={editingProduct ? { opacity: 0.6 } : {}}
+                placeholder="Leave empty to auto-generate"
+                id="product-sku-input"
+              />
             </div>
           </div>
           {!editingProduct && (
-            <p className="text-secondary text-xs" style={{ marginBottom: '12px' }}>Leave SKU blank to auto-generate (e.g. PRD-001, PRD-002)</p>
+            <p className="text-secondary text-xs" style={{ marginBottom: '12px' }}>💡 Leave SKU empty to auto-generate (e.g. PRD-001), or enter your own unique SKU</p>
           )}
 
           <div className="form-group">
